@@ -1,34 +1,28 @@
 # Write a guessing game program
 
-number_to_guess = -1
-user_two_guess = -1
+import random
 
-while True:
-    try:
-        number_to_guess = int(input("User 1, enter a number between 0 and 100: "))
-        if number_to_guess <= 0 or number_to_guess >= 100:
-            print("Try again")
+
+def get_num_from_player() -> int:
+    number_to_guess = -1
+    while True:
+        try:
+            number_to_guess = int(input("User 1, enter a number between 0 and 100: "))
+            if number_to_guess <= 0 or number_to_guess >= 100:
+                print("Try again")
+                continue
+        except ValueError:
+            print("Enter a number")
             continue
-    except ValueError:
-        print("Enter a number")
-        continue
 
-    break
+        break
+    return number_to_guess
 
+if __name__ == '__main__':
+    num_to_guess = random.randrange(0, 100)
+    user_guess = get_num_from_player()
 
-while True:
-    try:
-        user_two_guess = int(input("User 2, guess the number: "))
-        if user_two_guess <= 0 or user_two_guess >= 100:
-            print("Try again")
-            continue
-    except ValueError:
-        print("Enter a number")
-        continue
-
-    break
-
-if number_to_guess == user_two_guess:
-    print("You guessed the number!")
-else:
-    print("Incorrect")
+    if num_to_guess == user_guess:
+        print("You guessed the number!")
+    else:
+        print("Incorrect")
